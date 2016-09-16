@@ -14,21 +14,57 @@ button {
     background: #dfdf66;
     width: 100vw;
     height: 33vh;
-    opacity: 0.4;
-    transition: opacity 300ms ease-in;
+    opacity: 0.3;
+    transition: opacity 150ms ease-in;
 }
-button:active,
-button.active {
+button.active  {
     transition: opacity 2ms ease-out; opacity: 1; }
 button:nth-child(2) { background: #66aaff; }
 button:nth-child(3) { background: #00dd88; }
 
 @media (min-width: 600px) {
     body {
-        flex-direction: row;
+        flex-direction: row-reverse;
     }
     
     button {
         height: 100vh;
+    }
+}
+
+.score {
+    position: fixed;
+    width: 100vw;  height: 100vh;
+    text-align: center;
+    line-height: 100vh;
+    font-size: 95vh; font-family: sans-serif;
+    z-index: 10;
+    pointer-events: none;
+    color: rgba(0,0,0,0.2);
+}
+
+.score.updated {
+    animation: pulse 100ms infinite;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.4);  
+    }
+}
+
+.failed {
+    animation: bzzz 0.25s infinite alternate;
+}
+
+@keyframes bzzz {
+    from {
+        transform: scale(0.9) translate(-5%, 5%) rotateZ(-12deg);
+    }
+    to {
+        transform: scale(1.1) translate(4%, -4%) rotateZ(14deg);
     }
 }
