@@ -4,6 +4,8 @@ body {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
+    max-height: 100vh;
+    overflow: hidden;
 }
 button {
     display: block;
@@ -11,16 +13,23 @@ button {
     flex-grow: 0;
     box-shadow: none;
     border: 0;
-    background: #dfdf66;
     width: 100vw;
-    height: 33vh;
-    opacity: 0.3;
+    height: 34vh;
+    opacity: 0.9;
     transition: opacity 150ms ease-in;
 }
-button.active  {
-    transition: opacity 2ms ease-out; opacity: 1; }
-button:nth-child(2) { background: #66aaff; }
-button:nth-child(3) { background: #00dd88; }
+
+
+
+button:nth-child(2) { background: #F0C63E; }
+button:nth-child(3) { background: #D85899; }
+button:nth-child(4) { background: #68FFFD;}
+
+button:nth-child(2).active { background: #7F360C; }
+button:nth-child(3).active { background: #7F0069; }
+button:nth-child(4).active { background: #3FCCCB; }
+
+button.active {  transition: opacity 2ms ease-out; opacity: 1; }
 
 @media (min-width: 600px) {
     body {
@@ -44,12 +53,12 @@ button:nth-child(3) { background: #00dd88; }
 }
 
 .score.updated {
-    animation: pulse 100ms infinite;
+    animation: pulse 150ms ease-out;
 }
 
 @keyframes pulse {
     from {
-        transform: scale(1);
+        transform: scale(0.8);
     }
     to {
         transform: scale(1.4);  
@@ -57,14 +66,14 @@ button:nth-child(3) { background: #00dd88; }
 }
 
 .failed {
-    animation: bzzz 0.25s infinite alternate;
+    animation: bzzz 0.15s infinite alternate;
 }
 
 @keyframes bzzz {
     from {
-        transform: scale(0.9) translate(-5%, 5%) rotateZ(-12deg);
+        transform: scale(0.9) translate(-5%, 5%) rotateZ(-12deg) rotateX(15deg) rotateY(-5deg);
     }
     to {
-        transform: scale(1.1) translate(4%, -4%) rotateZ(14deg);
+        transform: scale(1.1) translate(4%, -4%) rotateZ(14deg) rotateX(-10deg) rotateY(5deg);
     }
 }
