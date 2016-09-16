@@ -1,9 +1,4 @@
 // simon says
-
-// 3 buttons
-// that make light in order
-// identifier
-
 const BUTTONS = 3;
 const INTERVAL = 1050;
 
@@ -27,13 +22,9 @@ document.body.addEventListener('click', (el) => {
            addNewMoves(orderArr);
         }
     } else {
-        console.log('false');
         endGame();
         return false;
     }
-
-    console.log(orderArr.length);
-    console.log(timeOfPlay);
 });
 
 function randomButton() {
@@ -42,12 +33,10 @@ function randomButton() {
     return Math.floor(Math.random() * (max - min) + 1);
 }
 
-
 // startGame for amount of orders
 // first time play, push to the array.
 function startGame(order=0) {
     timeOfPlay = 0;
-    console.log('startgame');
     if (order < orderArr.length) {
         playMoves(orderArr);
     }
@@ -57,11 +46,8 @@ function addNewMoves(arr) {
     timeOfPlay = 0;
     playMoves(arr);
     
-    console.log('adding the new move');
     let index = randomButton();
-    console.log('pre timeout', INTERVAL*orderArr.length);
     setTimeout(() => {
-        console.log('adding new');
         lightButton(index);
         orderArr.push(index);
     }, (INTERVAL * orderArr.length) + 300);
@@ -69,7 +55,6 @@ function addNewMoves(arr) {
 
 function playMoves(arr) {
     timeOfPlay = 0;
-    console.log('Playing the moves');
     if(arr.length>0) {
         let index = arr[0];
         lightButton(index);
@@ -79,12 +64,9 @@ function playMoves(arr) {
     }
 }
 
-startGame();
-
 function endGame() {
-    order = [];
+    orderArr = [];
     timeOfPlay = 0;
-
     setTimeout(startGame(), 5000);
 }
 
@@ -96,3 +78,6 @@ function lightButton(index) {
         button.classList.toggle('active');
     }, 500);
 }
+
+
+startGame();

@@ -19,7 +19,7 @@ button {
 }
 button:active,
 button.active {
-    transition: opacity 50ms ease-out; opacity: 1; }
+    transition: opacity 2ms ease-out; opacity: 1; }
 button:nth-child(2) { background: #66aaff; }
 button:nth-child(3) { background: #00dd88; }
 
