@@ -14,8 +14,6 @@ for(let i=BUTTONS;i>0;i--) {
     document.body.appendChild(button);
 }
 
-
-let order = 0;
 let orderArr = [1,2,3];
 let timeOfPlay = 0;
 
