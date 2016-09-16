@@ -4,13 +4,8 @@
 // that make light in order
 // identifier
 
-// [0,0,0]  // none was pressed
-// [1,0,0] // first was pressed
-// [0,1,0] // second was pressed
-
-// amount of buttons
 const BUTTONS = 3;
-const INTERVAL = 900;
+const INTERVAL = 1050;
 
 for(let i=BUTTONS;i>0;i--) {
     let button = document.createElement('button');
@@ -71,7 +66,7 @@ function addNewMoves(arr) {
         console.log('adding new');
         lightButton(index);
         orderArr.push(index);
-    }, INTERVAL * orderArr.length);
+    }, (INTERVAL * orderArr.length) + 300);
 }
 
 function playMoves(arr) {
