@@ -1,6 +1,6 @@
 // simon says
 const BUTTONS = 3;
-const INTERVAL = 1050;
+const INTERVAL = 750;
 
 let orderArr = [1,2,3];
 let timeOfPlay = 0;
@@ -64,8 +64,6 @@ function startGame(order=0) {
     }
 }
 
-
-
 function addNewMoves(arr) {
     timeOfPlay = 0;
     playMoves(arr);
@@ -74,7 +72,7 @@ function addNewMoves(arr) {
     setTimeout(() => {
         lightButton(index);
         orderArr.push(index);
-    }, (INTERVAL * orderArr.length) + 300);
+    }, (INTERVAL * orderArr.length));
 }
 
 function playMoves(arr) {
@@ -111,7 +109,7 @@ function lightButton(index, speed=200) {
 }
 
 function beep(idx) {
-  let audio = new Audio(`/beeps/beep${idx}.wav`);
+  let audio = new Audio(`beeps/beep${idx}.wav`);
   audio.play();
 }
 
