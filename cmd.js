@@ -64,6 +64,8 @@ function startGame(order=0) {
     }
 }
 
+
+
 function addNewMoves(arr) {
     timeOfPlay = 0;
     playMoves(arr);
@@ -101,10 +103,16 @@ function endGame() {
 function lightButton(index, speed=200) {
     let button = document.querySelectorAll(`[data-index="${index}"]`)[0];
     button.classList.toggle('active');
+  beep(index);
 
     setTimeout(() => {
         button.classList.toggle('active');
     }, speed);
+}
+
+function beep(idx) {
+  let audio = new Audio(`/beeps/beep${idx}.wav`);
+  audio.play();
 }
 
 setTimeout(() => {
