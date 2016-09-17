@@ -46,7 +46,9 @@ button.active {  transition: opacity 2ms ease-out; opacity: 1; }
     width: 100vw;  height: 100vh;
     text-align: center;
     line-height: 100vh;
-    font-size: 95vh; font-family: sans-serif;
+    font-size: 55vh;
+    letter-spacing: -85px;
+    font-family: sans-serif;
     z-index: 10;
     pointer-events: none;
     color: rgba(0,0,0,0.2);

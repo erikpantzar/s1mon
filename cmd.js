@@ -5,7 +5,6 @@ const INTERVAL = 1050;
 let orderArr = [1,2,3];
 let timeOfPlay = 0;
 
-
 for(let i=BUTTONS;i>0;i--) {
     let button = document.createElement('button');
     button.dataset.index = i;
