@@ -1,36 +1,42 @@
 // simon says
-const BUTTONS = 3;
 const INTERVAL = 750;
-
+const BUTTONS = 3;
 let orderArr = [1,2,3];
 let timeOfPlay = 0;
 
-for(let i=BUTTONS;i>0;i--) {
-    let button = document.createElement('button');
-    button.dataset.index = i;
-    document.body.appendChild(button);
-}
-
-document.body.addEventListener('keypress', (evt) => {
-    switch(evt.key) {
-    case 'z':
-        clickHandler(1)
-        break;
-    case 'x':
-        clickHandler(2)
-        break;
-    case 'c':
-        clickHandler(3);
-        break;
-    default:
-        break;
+function init() {    
+    for(let i=BUTTONS;i>0;i--) {
+        let button = document.createElement('button');
+        button.dataset.index = i;
+        document.body.appendChild(button);
     }
-});
 
-document.body.addEventListener('click', (el) => {
-    let idx = el.target.dataset.index;
-    clickHandler(idx);
-});
+    document.body.addEventListener('keypress', (evt) => {
+        switch(evt.key) {
+        case 'z':
+            clickHandler(1)
+            break;
+        case 'x':
+            clickHandler(2)
+            break;
+        case 'c':
+            clickHandler(3);
+            break;
+        default:
+            break;
+        }
+    });
+
+    document.body.addEventListener('click', (el) => {
+        let idx = el.target.dataset.index;
+        clickHandler(idx);
+    });
+    
+    const scoreKeeper = document.createElement('div');
+    scoreKeeper.classList.add('score');
+    scoreKeeper.innerHTML = "0";
+    document.body.appendChild(scoreKeeper);
+}
 
 function clickHandler(idx) {
     lightButton(idx);
@@ -94,33 +100,20 @@ function endGame() {
         orderArr = [1,2,3];
         drawScore(0);
         setTimeout(startGame(), 1600);
-    }, 1500);
-    
+    }, 1500);    
 }
 
 function lightButton(index, speed=200) {
     let button = document.querySelectorAll(`[data-index="${index}"]`)[0];
     button.classList.toggle('active');
-  beep(index);
+    let audio = new Audio(`beeps/beep${index}.wav`);
+    audio.volume = 0.1;
+    audio.play();
 
     setTimeout(() => {
         button.classList.toggle('active');
     }, speed);
 }
-
-function beep(idx) {
-  let audio = new Audio(`beeps/beep${idx}.wav`);
-  audio.play();
-}
-
-setTimeout(() => {
-    startGame();
-}, 1200);
-
-const scoreKeeper = document.createElement('div');
-scoreKeeper.classList.add('score');
-scoreKeeper.innerHTML = "0";
-document.body.appendChild(scoreKeeper);
 
 function drawScore(score=0) {
     let keeper = document.querySelector('.score');
@@ -131,3 +124,11 @@ function drawScore(score=0) {
         keeper.classList.toggle('updated');
     }, 100);
 }
+
+const simon = {
+    init,
+    startGame,
+    endGame
+};
+
+export default simon;
