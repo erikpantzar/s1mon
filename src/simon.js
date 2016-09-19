@@ -1,42 +1,48 @@
+import 'whatwg-fetch';
 // simon says
 const INTERVAL = 750;
 const BUTTONS = 3;
 let orderArr = [1,2,3];
 let timeOfPlay = 0;
 
-function init() {    
-    for(let i=BUTTONS;i>0;i--) {
-        let button = document.createElement('button');
-        button.dataset.index = i;
-        document.body.appendChild(button);
+const API = 'https://h1score.herokuapp.com/api/h1score';
+// const API = '/api/h1score';
+
+function init() {
+  for(let i=BUTTONS;i>0;i--) {
+    let button = document.createElement('button');
+    button.dataset.simon = i;
+    document.body.appendChild(button);
+  }
+
+  document.body.addEventListener('keypress', (evt) => {
+    switch(evt.key) {
+      case 'z':
+      clickHandler(1)
+      break;
+     case 'x':
+      clickHandler(2)
+      break;
+      case 'c':
+      clickHandler(3);
+      break;
+      default:
+      break;
     }
+  });
 
-    document.body.addEventListener('keypress', (evt) => {
-        switch(evt.key) {
-        case 'z':
-            clickHandler(1)
-            break;
-        case 'x':
-            clickHandler(2)
-            break;
-        case 'c':
-            clickHandler(3);
-            break;
-        default:
-            break;
-        }
-    });
+  document.body.addEventListener('click', (el) => {
+    let idx = el.target.dataset.simon;
+    clickHandler(idx);
+  });
 
-    document.body.addEventListener('click', (el) => {
-        let idx = el.target.dataset.index;
-        clickHandler(idx);
-    });
-    
-    const scoreKeeper = document.createElement('div');
-    scoreKeeper.classList.add('score');
-    scoreKeeper.innerHTML = "0";
-    document.body.appendChild(scoreKeeper);
+  const scoreKeeper = document.createElement('div');
+  scoreKeeper.classList.add('score');
+  scoreKeeper.innerHTML = "0";
+  document.body.appendChild(scoreKeeper);
+
 }
+
 
 function clickHandler(idx) {
     lightButton(idx);
@@ -95,6 +101,8 @@ function playMoves(arr) {
 function endGame() {
     document.body.classList.add('failed');
 
+  getName();
+
     setTimeout(()=> {
         document.body.classList.remove('failed');
         orderArr = [1,2,3];
@@ -103,8 +111,34 @@ function endGame() {
     }, 1500);    
 }
 
+
+let playerName = "";
+const nameTemplate = `
+  <div class="form-name__new">
+  <input placeholder="Name">
+  <button class="button--secondary" type="button">skip..</button>
+  </div>
+  
+  <div class="form-name__exist">
+  <h2 class="name-form__title"><span>Are you</span> ${playerName}?</h2>
+  <button type="button">no.</button>
+  </div>
+`;
+
+let formContainer = document.createElement('form');
+formContainer.classList.add('name-form');
+formContainer.dataset.state = 'unset';
+formContainer.innerHTML = nameTemplate;
+document.body.appendChild(formContainer);
+
+
+const nameHandler = {
+    init: ()=> {},
+    submit: ()=> {}
+};
+
 function lightButton(index, speed=200) {
-    let button = document.querySelectorAll(`[data-index="${index}"]`)[0];
+    let button = document.querySelectorAll(`[data-simon="${index}"]`)[0];
     button.classList.toggle('active');
     let audio = new Audio(`beeps/beep${index}.wav`);
     audio.volume = 0.1;
@@ -119,16 +153,36 @@ function drawScore(score=0) {
     let keeper = document.querySelector('.score');
     keeper.classList.toggle('updated');
     keeper.innerHTML = score;
-
     setTimeout(()=> {
         keeper.classList.toggle('updated');
     }, 100);
 }
 
+function postScore(name) {
+  // POST scores
+  if(orderArr.length > 2) {
+    let data = {
+      method: 'POST',
+      body: JSON.stringify({ name, score: orderArr.length }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    };
+
+    let request = new Request(API, data);
+    fetch(request).then((response)=> {
+      return response.json()
+    }).then((res)=>{
+      // console.log(res);
+    });
+  }
+}
+
 const simon = {
-    init,
-    startGame,
-    endGame
+  init,
+  startGame,
+  endGame
 };
 
 export default simon;

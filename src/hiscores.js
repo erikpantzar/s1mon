@@ -21,8 +21,9 @@ const hiscore = {
             let item = document.createElement('div');
             item.classList.add('hiscores-score');
             item.innerHTML = `
-                       <span class="name">${score.name}</span> <span class="result">${score.score}</span>
-      <span class="time">${score.time}</span>
+                       <span class="result">${score.score}</span>
+                       <span class="name">${score.name}</span>
+                      <span class="time">${score.time}</span>
           `;
             hiscoreContainer.appendChild(item);
         })

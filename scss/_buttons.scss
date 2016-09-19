@@ -1,5 +1,4 @@
-
-button {
+[data-simon] {
     display: block;
     display: flex;
     flex-grow: 0;
@@ -15,21 +14,21 @@ button {
    } 
 }
 
-button[data-index="1"] {
+[data-simon="1"] {
     background: #F0C63E;
     &.active {
         background: #7F360C;
      }
 }
-button[data-index="2"] {
+[data-simon="2"] {
     background: #D85899;
     &.active {
          background: #7F0069;
     }
 }
-button[data-index="3"] {
+[data-simon="3"] {
     background: #68FFFD;
     &.active {
-         background: #3FCCCB; 
+         background: darken(#3FCCCB, 20%); 
     }
 }

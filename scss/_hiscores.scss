@@ -2,6 +2,7 @@
       position: absolute;
       z-index: 30;
       top: 101vh;
+      width: 2000px;
       left: 0;
       pointer-events: none;
       padding: 1vh 2vh;
@@ -16,12 +17,14 @@
 
       .time, .score { display: block; clear: both; }
       .name { position: relative; width: auto; padding-right: 10px; }
-      .name:after { content: ":"; position: absolute; right: -10px; }
+      .name:before { content: "."; position: absolute; left: -30px; }
       .time { font-size: 4vh; clear: left; line-height: 4vh; }
 }
 
-.hiscores { animation: sscroll 12s infinite cubic-bezier(0.02, 0.56, 0.3, 0.91),
-          fadeeeer 4s 9s infinite ease-out; }
+.hiscores {
+    animation: sscroll 12s infinite cubic-bezier(0.02, 0.56, 0.3, 0.91),
+    fadeeeer 12s linear infinite;
+    animation-fill-mode: forwards; }
 
 @keyframes sscroll {
     from {
@@ -35,6 +38,6 @@
 @keyframes fadeeeer {
    0% { opacity: 1; }
    80% { opactiy: 1; }
-   100% { opacity: 0.4; }
+   100% { opacity: 0; }
 }
 

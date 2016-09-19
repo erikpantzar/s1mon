@@ -1,0 +1,46 @@
+.name-form {
+    position: fixed;
+    background: rgba(pink, 0.9);
+    width: 100vw;
+    height: 100vh;
+    z-index: 90;
+    padding: 6vh 12vw;
+    box-sizing: border-box;
+
+    input {
+        max-width: 100%;
+        background: none;
+        border: 0;
+        border-bottom: 4px solid darken(pink, 20%);
+        box-shadow: none;
+        font-size: 18vw;
+        line-height: 24vw;
+        height: 24vw;
+        padding: 0 0 0 2vw;
+        outline: none;
+        
+        &:focus {
+            border-bottom: 4px solid darken(pink, 40%);
+        }
+    }
+
+    &__title {
+        color: invert(pink);
+        font: 900 5vh/5vh sans-serif;
+        display: block;
+        height: 5vh;
+    }
+    
+    button {
+        float: none;
+        background: invert(pink);
+        color: pink;
+        width: 100%;
+        height: 12vh;
+        border: none;
+        box-shadow: 0;
+        text-align: center;
+        font-size: 7vh;
+        margin: 2vh 0;
+    }
+}
