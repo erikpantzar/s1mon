@@ -9,7 +9,6 @@ document.body.appendChild(hiscoreContainer);
 
 const hiscore = {
     getScores: ()=> {
-        console.log('getting scores');
         fetch(`${API}/h1score`)
             .then((res)=> res.json())
             .then((hiscores)=> {
@@ -18,7 +17,6 @@ const hiscore = {
             });
     },
     scoreHandler: (scores)=> {
-        console.log('writing scores to dom');
         scores.forEach((score)=> {
             let item = document.createElement('div');
             item.classList.add('hiscores-score');
