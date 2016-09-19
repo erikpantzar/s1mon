@@ -1,0 +1,40 @@
+.hiscores {
+      position: absolute;
+      z-index: 30;
+      top: 101vh;
+      left: 0;
+      pointer-events: none;
+      padding: 1vh 2vh;
+      box-sizing: border-box;
+
+      &-score {
+               font: 900 12vh/12vh sans-serif;
+               color: rgba(0,0,0,0.1);
+               display: block;
+               margin: 1vh 0;
+      }
+
+      .time, .score { display: block; clear: both; }
+      .name { position: relative; width: auto; padding-right: 10px; }
+      .name:after { content: ":"; position: absolute; right: -10px; }
+      .time { font-size: 4vh; clear: left; line-height: 4vh; }
+}
+
+.hiscores { animation: sscroll 12s infinite cubic-bezier(0.02, 0.56, 0.3, 0.91),
+          fadeeeer 4s 9s infinite ease-out; }
+
+@keyframes sscroll {
+    from {
+        transform: translate(2vw, 101vh);
+    }
+    to {
+        transform: translate(3vw, -181vh);
+    }
+}
+
+@keyframes fadeeeer {
+   0% { opacity: 1; }
+   80% { opactiy: 1; }
+   100% { opacity: 0.4; }
+}
+

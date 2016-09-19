@@ -1,0 +1,37 @@
+.score {
+    position: fixed;
+    width: 100vw;  height: 100vh;
+    text-align: center;
+    line-height: 100vh;
+    font-size: 55vw;
+    font-family: sans-serif;
+    z-index: 10;
+    pointer-events: none;
+    color: rgba(0,0,0,0.2);
+}
+
+.score.updated {
+    animation: pulse 150ms ease-out;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(0.8);
+    }
+    to {
+        transform: scale(1.4);  
+    }
+}
+
+.failed {
+    animation: bzzz 0.15s infinite alternate;
+}
+
+@keyframes bzzz {
+    from {
+        transform: scale(0.9) translate(-5%, 5%) rotateZ(-12deg) rotateX(15deg) rotateY(-5deg);
+    }
+    to {
+        transform: scale(1.1) translate(4%, -4%) rotateZ(14deg) rotateX(-10deg) rotateY(5deg);
+    }
+}

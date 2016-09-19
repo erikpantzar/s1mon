@@ -1,0 +1,1 @@
+node-sass --include-path scss scss/index.scss nnn.css

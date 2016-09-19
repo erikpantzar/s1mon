@@ -1,0 +1,117 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: block;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  max-height: 100vh;
+  overflow: hidden; }
+  @media (min-width: 600px) {
+    body {
+      flex-direction: row-reverse; } }
+
+button {
+  display: block;
+  display: flex;
+  flex-grow: 0;
+  box-shadow: none;
+  border: 0;
+  width: 100vw;
+  height: 34vh;
+  opacity: 0.9;
+  transition: opacity 150ms ease-in; }
+  @media (min-width: 600px) {
+    button {
+      height: 100vh; } }
+
+button[data-index="1"] {
+  background: #F0C63E; }
+  button[data-index="1"].active {
+    background: #7F360C; }
+
+button[data-index="2"] {
+  background: #D85899; }
+  button[data-index="2"].active {
+    background: #7F0069; }
+
+button[data-index="3"] {
+  background: #68FFFD; }
+  button[data-index="3"].active {
+    background: #3FCCCB; }
+
+.score {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  line-height: 100vh;
+  font-size: 55vw;
+  font-family: sans-serif;
+  z-index: 10;
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0.2); }
+
+.score.updated {
+  animation: pulse 150ms ease-out; }
+
+@keyframes pulse {
+  from {
+    transform: scale(0.8); }
+  to {
+    transform: scale(1.4); } }
+
+.failed {
+  animation: bzzz 0.15s infinite alternate; }
+
+@keyframes bzzz {
+  from {
+    transform: scale(0.9) translate(-5%, 5%) rotateZ(-12deg) rotateX(15deg) rotateY(-5deg); }
+  to {
+    transform: scale(1.1) translate(4%, -4%) rotateZ(14deg) rotateX(-10deg) rotateY(5deg); } }
+
+.hiscores {
+  position: absolute;
+  z-index: 30;
+  top: 101vh;
+  left: 0;
+  pointer-events: none;
+  padding: 1vh 2vh;
+  box-sizing: border-box; }
+  .hiscores-score {
+    font: 900 12vh/12vh sans-serif;
+    color: rgba(0, 0, 0, 0.1);
+    display: block;
+    margin: 1vh 0; }
+  .hiscores .time, .hiscores .score {
+    display: block;
+    clear: both; }
+  .hiscores .name {
+    position: relative;
+    width: auto;
+    padding-right: 10px; }
+  .hiscores .name:after {
+    content: ":";
+    position: absolute;
+    right: -10px; }
+  .hiscores .time {
+    font-size: 4vh;
+    clear: left;
+    line-height: 4vh; }
+
+.hiscores {
+  animation: sscroll 12s infinite cubic-bezier(0.02, 0.56, 0.3, 0.91), fadeeeer 4s 9s infinite ease-out; }
+
+@keyframes sscroll {
+  from {
+    transform: translate(2vw, 101vh); }
+  to {
+    transform: translate(3vw, -181vh); } }
+
+@keyframes fadeeeer {
+  0% {
+    opacity: 1; }
+  80% {
+    opactiy: 1; }
+  100% {
+    opacity: 0.4; } }

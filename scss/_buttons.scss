@@ -1,0 +1,35 @@
+
+button {
+    display: block;
+    display: flex;
+    flex-grow: 0;
+    box-shadow: none;
+    border: 0;
+    width: 100vw;
+    height: 34vh;
+    opacity: 0.9;
+    transition: opacity 150ms ease-in;
+
+    @media (min-width: 600px) {   
+           height: 100vh;
+   } 
+}
+
+button[data-index="1"] {
+    background: #F0C63E;
+    &.active {
+        background: #7F360C;
+     }
+}
+button[data-index="2"] {
+    background: #D85899;
+    &.active {
+         background: #7F0069;
+    }
+}
+button[data-index="3"] {
+    background: #68FFFD;
+    &.active {
+         background: #3FCCCB; 
+    }
+}
