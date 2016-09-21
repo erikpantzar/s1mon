@@ -1,5 +1,5 @@
 import simon from './simon';
-import hiscores from './hiscores';
+// import hiscores from './hiscores';
 
 
 // when fail game, send score with name?
@@ -9,5 +9,3 @@ import hiscores from './hiscores';
 // set the stage
 simon.init();
 simon.startGame();
-
-
