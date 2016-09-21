@@ -46,10 +46,10 @@ function init() {
 
 function clickHandler(idx) {
     lightButton(idx);
-   
+
     if (idx == orderArr[timeOfPlay]) {
         timeOfPlay++;
-        
+
         if (timeOfPlay == orderArr.length) {
             drawScore(timeOfPlay);
             setTimeout(() => addNewMoves(orderArr), 1200);
@@ -79,7 +79,7 @@ function startGame(order=0) {
 function addNewMoves(arr) {
     timeOfPlay = 0;
     playMoves(arr);
-    
+
     let index = randomButton();
     setTimeout(() => {
         lightButton(index);
@@ -101,41 +101,14 @@ function playMoves(arr) {
 function endGame() {
     document.body.classList.add('failed');
 
-  getName();
-
     setTimeout(()=> {
         document.body.classList.remove('failed');
         orderArr = [1,2,3];
         drawScore(0);
         setTimeout(startGame(), 1600);
-    }, 1500);    
+    }, 1500);
 }
 
-
-let playerName = "";
-const nameTemplate = `
-  <div class="form-name__new">
-  <input placeholder="Name">
-  <button class="button--secondary" type="button">skip..</button>
-  </div>
-  
-  <div class="form-name__exist">
-  <h2 class="name-form__title"><span>Are you</span> ${playerName}?</h2>
-  <button type="button">no.</button>
-  </div>
-`;
-
-let formContainer = document.createElement('form');
-formContainer.classList.add('name-form');
-formContainer.dataset.state = 'unset';
-formContainer.innerHTML = nameTemplate;
-document.body.appendChild(formContainer);
-
-
-const nameHandler = {
-    init: ()=> {},
-    submit: ()=> {}
-};
 
 function lightButton(index, speed=200) {
     let button = document.querySelectorAll(`[data-simon="${index}"]`)[0];
@@ -156,27 +129,6 @@ function drawScore(score=0) {
     setTimeout(()=> {
         keeper.classList.toggle('updated');
     }, 100);
-}
-
-function postScore(name) {
-  // POST scores
-  if(orderArr.length > 2) {
-    let data = {
-      method: 'POST',
-      body: JSON.stringify({ name, score: orderArr.length }),
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    };
-
-    let request = new Request(API, data);
-    fetch(request).then((response)=> {
-      return response.json()
-    }).then((res)=>{
-      // console.log(res);
-    });
-  }
 }
 
 const simon = {
